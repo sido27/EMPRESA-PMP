@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CALCÚLOS DE EMPRESA</title>
+    <style>
+      #button {
+        display: block;
+        width: 35%;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        text-align: center;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="div">
+      <h1>FIFO</h1>
+      <label for="datosFIFO"></label>
+      <textarea
+        id="datosFIFO"
+        rows="10"
+        cols="50"
+        placeholder="date:&#10;tipo:"
+      >
+1/7,compra,120,460
+22/6,venta,100,0
+15/6,compra,25,600
+8/6,venta,100,0
+4/6,compra,480,480
+1/6,existencia,300,500</textarea
+      >
+
+      <button id="button">Press me</button>
+    </div>
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="3">Fecha</th>
+          <th rowspan="3">procedencia</th>
+        </tr>
+
+        <tr>
+          <th colspan="3">entrada</th>
+          <th colspan="3">salida</th>
+          <th colspan="3">existencia</th>
+        </tr>
+
+        <tr>
+          <th>cantidad</th>
+          <th>precio</th>
+          <th>valor</th>
+          <th>cantidad</th>
+          <th>precio</th>
+          <th>valor</th>
+          <th>cantidad</th>
+          <th>precio</th>
+          <th>valor</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabla"></tbody>
+    </table>
+  </body>
+
+  <script>
+    let btn = document.getElementById("button");
+    let datos = document.getElementById("datosFIFO");
+    let textContent = "";
+
+    btn.addEventListener("click", function () {
+      textContent = datos.value;
+      textContent = textContent.split(/\n|,/);
+      let table = document.getElementById("tabla");
+      let i;
+      for (i = 0; i < textContent.length - 3; i++) {
+        if (i % 4 == 0) {
+          var row = table.insertRow(0); //first row
+          var cell0 = row.insertCell(0); // first column
+          var cell1 = row.insertCell(1);
+          var cell2 = row.insertCell(2);
+          var cell3 = row.insertCell(3);
+          var cell4 = row.insertCell(4);
+          var cell5 = row.insertCell(5);
+          var cell6 = row.insertCell(6);
+          var cell7 = row.insertCell(7);
+          var cell8 = row.insertCell(8);
+          var cell9 = row.insertCell(9);
+          var cell10 = row.insertCell(10);
+          cell0.innerHTML = textContent[i]; //first column values
+          cell1.innerHTML = textContent[i + 1];
+          cell8.innerHTML = textContent[i + 2];
+          cell9.innerHTML = textContent[i + 3];
+
+          if (textContent[i + 1] == "compra") {
+            console.log("tre");
+          }
+        }
+      }
+    });
+  </script>
+</html>
+<!-- on a "using markup correctly" note, this should not be a form at all,
+     just get rid of those outer <form>...</form> tags. We're not in HTML 3.2 anymore,
+      in modern HTML any input element can be used all on its own =) Furthermore, 
+     if you need a clickable button, use <button>,
+ not an input with type button or type submit. -->
